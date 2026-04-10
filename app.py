@@ -45,38 +45,53 @@ st.markdown("""
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # COUNTY MARKET DATA
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# Massively expanded county dataset: soil quality (NCCPI), land use %, crop yields, 5-yr price history
+# Based on USDA NASS, Indiana Farmland Values Survey, Purdue Ag Econ data
 COUNTIES = {
-    "LaPorte":    {"avg": 12718, "lo": 7780, "hi": 16361, "seat": "La Porte",      "pop": 110552, "listings_est": 119},
-    "Porter":     {"avg": 11500, "lo": 7000, "hi": 15000, "seat": "Valparaiso",    "pop": 173215, "listings_est": 346},
-    "St. Joseph": {"avg": 13200, "lo": 8500, "hi": 17000, "seat": "South Bend",    "pop": 271826, "listings_est": 200},
-    "Lake":       {"avg": 14500, "lo": 9000, "hi": 20000, "seat": "Crown Point",   "pop": 498700, "listings_est": 366},
-    "Starke":     {"avg": 8900,  "lo": 5500, "hi": 12000, "seat": "Knox",          "pop": 22993,  "listings_est": 39},
-    "Marshall":   {"avg": 10800, "lo": 7200, "hi": 14500, "seat": "Plymouth",      "pop": 46258,  "listings_est": 62},
-    "Jasper":     {"avg": 10200, "lo": 6800, "hi": 13500, "seat": "Rensselaer",    "pop": 33562,  "listings_est": 45},
-    "Newton":     {"avg": 8500,  "lo": 5000, "hi": 11500, "seat": "Kentland",      "pop": 14004,  "listings_est": 30},
-    "Pulaski":    {"avg": 8200,  "lo": 5200, "hi": 11000, "seat": "Winamac",       "pop": 12638,  "listings_est": 20},
-    "Elkhart":    {"avg": 12500, "lo": 8000, "hi": 16000, "seat": "Goshen",        "pop": 206341, "listings_est": 150},
-    "Kosciusko":  {"avg": 11000, "lo": 7500, "hi": 14500, "seat": "Warsaw",        "pop": 79835,  "listings_est": 140},
-    "Noble":      {"avg": 9500,  "lo": 6000, "hi": 13000, "seat": "Albion",        "pop": 47529,  "listings_est": 55},
-    "Fulton":     {"avg": 9000,  "lo": 5800, "hi": 12500, "seat": "Rochester",     "pop": 20007,  "listings_est": 35},
-    "White":      {"avg": 10500, "lo": 7000, "hi": 14000, "seat": "Monticello",    "pop": 24102,  "listings_est": 40},
-    "Whitley":    {"avg": 10000, "lo": 6500, "hi": 13500, "seat": "Columbia City", "pop": 33964,  "listings_est": 45},
-    "Steuben":    {"avg": 10500, "lo": 7000, "hi": 14000, "seat": "Angola",        "pop": 34474,  "listings_est": 60},
-    "DeKalb":     {"avg": 10200, "lo": 6800, "hi": 13500, "seat": "Auburn",        "pop": 43475,  "listings_est": 50},
-    "LaGrange":   {"avg": 11500, "lo": 7500, "hi": 15500, "seat": "LaGrange",      "pop": 39614,  "listings_est": 40},
-    "Allen":      {"avg": 13000, "lo": 8500, "hi": 17500, "seat": "Fort Wayne",    "pop": 385340, "listings_est": 250},
-    "Cass":       {"avg": 9800,  "lo": 6500, "hi": 13000, "seat": "Logansport",    "pop": 37689,  "listings_est": 40},
-    "Miami":      {"avg": 9500,  "lo": 6200, "hi": 13000, "seat": "Peru",          "pop": 35523,  "listings_est": 35},
-    "Wabash":     {"avg": 9200,  "lo": 6000, "hi": 12500, "seat": "Wabash",        "pop": 31424,  "listings_est": 30},
-    "Huntington": {"avg": 9800,  "lo": 6500, "hi": 13000, "seat": "Huntington",    "pop": 36374,  "listings_est": 40},
-    "Wells":      {"avg": 10000, "lo": 6800, "hi": 13500, "seat": "Bluffton",      "pop": 28174,  "listings_est": 25},
-    "Adams":      {"avg": 9500,  "lo": 6200, "hi": 13000, "seat": "Decatur",       "pop": 35667,  "listings_est": 30},
-    "Jay":        {"avg": 8800,  "lo": 5500, "hi": 12000, "seat": "Portland",      "pop": 21058,  "listings_est": 20},
-    "Blackford":  {"avg": 9000,  "lo": 5800, "hi": 12000, "seat": "Hartford City", "pop": 11758,  "listings_est": 15},
-    "Benton":     {"avg": 10800, "lo": 7500, "hi": 14000, "seat": "Fowler",        "pop": 8661,   "listings_est": 15},
-    "Carroll":    {"avg": 10500, "lo": 7000, "hi": 14000, "seat": "Delphi",        "pop": 20016,  "listings_est": 20},
-    "Tippecanoe": {"avg": 12000, "lo": 8000, "hi": 16000, "seat": "Lafayette",     "pop": 195732, "listings_est": 120},
+    #              avg   lo    hi    seat              pop     est  nccpi farm%  forest% corn  soy   wheat  rent  hist  top_soil
+    "LaPorte":    {"avg":12718,"lo":7780, "hi":16361,"seat":"La Porte",     "pop":110552,"listings_est":119,"nccpi":68,"farm_pct":62,"forest_pct":18,"corn_yield":182,"soy_yield":58,"wheat_yield":74,"rent":285,"hist":[9800,10500,11200,11900,12400,12718],"top_soil":"Coupee silt loam, Tracy sandy loam","cattle_stocking":1.8,"timber_val":1500,"top_crops":["Corn","Soybeans","Wheat","Hay"]},
+    "Porter":     {"avg":11500,"lo":7000, "hi":15000,"seat":"Valparaiso",   "pop":173215,"listings_est":346,"nccpi":65,"farm_pct":58,"forest_pct":15,"corn_yield":178,"soy_yield":56,"wheat_yield":72,"rent":270,"hist":[8900,9500,10100,10800,11300,11500],"top_soil":"Morley silt loam, Rensselaer loam","cattle_stocking":1.7,"timber_val":1400,"top_crops":["Corn","Soybeans","Hay","Popcorn"]},
+    "St. Joseph": {"avg":13200,"lo":8500, "hi":17000,"seat":"South Bend",   "pop":271826,"listings_est":200,"nccpi":72,"farm_pct":55,"forest_pct":14,"corn_yield":188,"soy_yield":60,"wheat_yield":76,"rent":295,"hist":[10200,10900,11600,12300,12900,13200],"top_soil":"Crosby silt loam, Riddles loam","cattle_stocking":1.8,"timber_val":1600,"top_crops":["Corn","Soybeans","Mint","Wheat"]},
+    "Lake":       {"avg":14500,"lo":9000, "hi":20000,"seat":"Crown Point",  "pop":498700,"listings_est":366,"nccpi":70,"farm_pct":45,"forest_pct":12,"corn_yield":180,"soy_yield":57,"wheat_yield":73,"rent":300,"hist":[11200,12000,12800,13600,14200,14500],"top_soil":"Maumee fine sandy loam","cattle_stocking":1.6,"timber_val":1300,"top_crops":["Corn","Soybeans","Vegetables"]},
+    "Starke":     {"avg":8900, "lo":5500, "hi":12000,"seat":"Knox",         "pop":22993, "listings_est":39, "nccpi":52,"farm_pct":60,"forest_pct":22,"corn_yield":155,"soy_yield":48,"wheat_yield":62,"rent":215,"hist":[6800,7200,7700,8200,8600,8900],"top_soil":"Maumee fine sandy loam, Plainfield sand","cattle_stocking":2.2,"timber_val":1100,"top_crops":["Corn","Soybeans","Mint","Potatoes"]},
+    "Marshall":   {"avg":10800,"lo":7200, "hi":14500,"seat":"Plymouth",     "pop":46258, "listings_est":62, "nccpi":63,"farm_pct":65,"forest_pct":17,"corn_yield":172,"soy_yield":54,"wheat_yield":70,"rent":255,"hist":[8300,8900,9500,10100,10600,10800],"top_soil":"Riddles loam, Crosby silt loam","cattle_stocking":1.8,"timber_val":1300,"top_crops":["Corn","Soybeans","Hay","Dairy"]},
+    "Jasper":     {"avg":10200,"lo":6800, "hi":13500,"seat":"Rensselaer",   "pop":33562, "listings_est":45, "nccpi":66,"farm_pct":72,"forest_pct":12,"corn_yield":178,"soy_yield":56,"wheat_yield":72,"rent":265,"hist":[7900,8500,9100,9700,10000,10200],"top_soil":"Brookston silty clay loam","cattle_stocking":1.9,"timber_val":1200,"top_crops":["Corn","Soybeans","Tomatoes"]},
+    "Newton":     {"avg":8500, "lo":5000, "hi":11500,"seat":"Kentland",     "pop":14004, "listings_est":30, "nccpi":55,"farm_pct":75,"forest_pct":8, "corn_yield":165,"soy_yield":52,"wheat_yield":66,"rent":225,"hist":[6500,6900,7400,7900,8300,8500],"top_soil":"Gilford fine sandy loam","cattle_stocking":2.0,"timber_val":900,"top_crops":["Corn","Soybeans"]},
+    "Pulaski":    {"avg":8200, "lo":5200, "hi":11000,"seat":"Winamac",      "pop":12638, "listings_est":20, "nccpi":50,"farm_pct":58,"forest_pct":25,"corn_yield":152,"soy_yield":47,"wheat_yield":60,"rent":210,"hist":[6200,6600,7100,7600,8000,8200],"top_soil":"Plainfield sand, Maumee fine sandy loam","cattle_stocking":2.3,"timber_val":1100,"top_crops":["Corn","Soybeans","Hay","Livestock"]},
+    "Elkhart":    {"avg":12500,"lo":8000, "hi":16000,"seat":"Goshen",       "pop":206341,"listings_est":150,"nccpi":67,"farm_pct":52,"forest_pct":15,"corn_yield":180,"soy_yield":58,"wheat_yield":74,"rent":280,"hist":[9700,10400,11100,11800,12300,12500],"top_soil":"Crosby-Brookston complex","cattle_stocking":1.8,"timber_val":1400,"top_crops":["Corn","Soybeans","Dairy","Mint"]},
+    "Kosciusko":  {"avg":11000,"lo":7500, "hi":14500,"seat":"Warsaw",       "pop":79835, "listings_est":140,"nccpi":62,"farm_pct":55,"forest_pct":18,"corn_yield":170,"soy_yield":54,"wheat_yield":70,"rent":255,"hist":[8500,9100,9700,10300,10800,11000],"top_soil":"Miami loam, Crosby silt loam","cattle_stocking":1.9,"timber_val":1400,"top_crops":["Corn","Soybeans","Hay","Dairy"]},
+    "Noble":      {"avg":9500, "lo":6000, "hi":13000,"seat":"Albion",       "pop":47529, "listings_est":55, "nccpi":58,"farm_pct":58,"forest_pct":22,"corn_yield":165,"soy_yield":52,"wheat_yield":67,"rent":235,"hist":[7300,7800,8300,8800,9300,9500],"top_soil":"Miami loam","cattle_stocking":2.0,"timber_val":1500,"top_crops":["Corn","Soybeans","Hay","Livestock"]},
+    "Fulton":     {"avg":9000, "lo":5800, "hi":12500,"seat":"Rochester",    "pop":20007, "listings_est":35, "nccpi":56,"farm_pct":62,"forest_pct":18,"corn_yield":162,"soy_yield":51,"wheat_yield":65,"rent":225,"hist":[6900,7400,7900,8400,8800,9000],"top_soil":"Crosby silt loam","cattle_stocking":2.0,"timber_val":1200,"top_crops":["Corn","Soybeans","Hay"]},
+    "White":      {"avg":10500,"lo":7000, "hi":14000,"seat":"Monticello",   "pop":24102, "listings_est":40, "nccpi":64,"farm_pct":68,"forest_pct":12,"corn_yield":175,"soy_yield":55,"wheat_yield":71,"rent":260,"hist":[8100,8700,9300,9900,10300,10500],"top_soil":"Drummer silty clay loam","cattle_stocking":1.8,"timber_val":1100,"top_crops":["Corn","Soybeans","Wheat"]},
+    "Whitley":    {"avg":10000,"lo":6500, "hi":13500,"seat":"Columbia City","pop":33964, "listings_est":45, "nccpi":60,"farm_pct":62,"forest_pct":18,"corn_yield":168,"soy_yield":53,"wheat_yield":68,"rent":245,"hist":[7700,8200,8800,9400,9800,10000],"top_soil":"Blount silt loam","cattle_stocking":1.9,"timber_val":1300,"top_crops":["Corn","Soybeans","Hay"]},
+    "Steuben":    {"avg":10500,"lo":7000, "hi":14000,"seat":"Angola",       "pop":34474, "listings_est":60, "nccpi":58,"farm_pct":50,"forest_pct":22,"corn_yield":165,"soy_yield":52,"wheat_yield":67,"rent":240,"hist":[8100,8600,9200,9800,10300,10500],"top_soil":"Morley-Blount complex","cattle_stocking":2.0,"timber_val":1500,"top_crops":["Corn","Soybeans","Hay","Dairy"]},
+    "DeKalb":     {"avg":10200,"lo":6800, "hi":13500,"seat":"Auburn",       "pop":43475, "listings_est":50, "nccpi":62,"farm_pct":65,"forest_pct":15,"corn_yield":170,"soy_yield":54,"wheat_yield":69,"rent":250,"hist":[7900,8400,9000,9600,10000,10200],"top_soil":"Blount-Pewamo complex","cattle_stocking":1.9,"timber_val":1300,"top_crops":["Corn","Soybeans","Wheat"]},
+    "LaGrange":   {"avg":11500,"lo":7500, "hi":15500,"seat":"LaGrange",     "pop":39614, "listings_est":40, "nccpi":65,"farm_pct":58,"forest_pct":18,"corn_yield":175,"soy_yield":55,"wheat_yield":71,"rent":265,"hist":[8900,9500,10200,10900,11300,11500],"top_soil":"Houghton muck, Morley silt loam","cattle_stocking":1.9,"timber_val":1400,"top_crops":["Corn","Soybeans","Dairy (Amish)","Hay"]},
+    "Allen":      {"avg":13000,"lo":8500, "hi":17500,"seat":"Fort Wayne",   "pop":385340,"listings_est":250,"nccpi":68,"farm_pct":55,"forest_pct":15,"corn_yield":182,"soy_yield":58,"wheat_yield":74,"rent":285,"hist":[10100,10800,11500,12200,12800,13000],"top_soil":"Blount silt loam, Pewamo clay loam","cattle_stocking":1.8,"timber_val":1400,"top_crops":["Corn","Soybeans","Wheat","Popcorn"]},
+    "Cass":       {"avg":9800, "lo":6500, "hi":13000,"seat":"Logansport",   "pop":37689, "listings_est":40, "nccpi":61,"farm_pct":62,"forest_pct":18,"corn_yield":170,"soy_yield":54,"wheat_yield":69,"rent":245,"hist":[7500,8000,8600,9200,9600,9800],"top_soil":"Crosby silt loam","cattle_stocking":1.9,"timber_val":1300,"top_crops":["Corn","Soybeans","Hay"]},
+    "Miami":      {"avg":9500, "lo":6200, "hi":13000,"seat":"Peru",         "pop":35523, "listings_est":35, "nccpi":60,"farm_pct":60,"forest_pct":20,"corn_yield":168,"soy_yield":53,"wheat_yield":68,"rent":240,"hist":[7300,7800,8400,9000,9400,9500],"top_soil":"Crosby-Miami complex","cattle_stocking":1.9,"timber_val":1300,"top_crops":["Corn","Soybeans","Hay","Livestock"]},
+    "Wabash":     {"avg":9200, "lo":6000, "hi":12500,"seat":"Wabash",       "pop":31424, "listings_est":30, "nccpi":59,"farm_pct":58,"forest_pct":22,"corn_yield":165,"soy_yield":52,"wheat_yield":67,"rent":235,"hist":[7100,7600,8100,8700,9100,9200],"top_soil":"Miami silt loam","cattle_stocking":2.0,"timber_val":1400,"top_crops":["Corn","Soybeans","Hay"]},
+    "Huntington": {"avg":9800, "lo":6500, "hi":13000,"seat":"Huntington",   "pop":36374, "listings_est":40, "nccpi":62,"farm_pct":63,"forest_pct":17,"corn_yield":170,"soy_yield":54,"wheat_yield":69,"rent":245,"hist":[7500,8000,8600,9200,9600,9800],"top_soil":"Blount silt loam","cattle_stocking":1.9,"timber_val":1300,"top_crops":["Corn","Soybeans","Wheat"]},
+    "Wells":      {"avg":10000,"lo":6800, "hi":13500,"seat":"Bluffton",     "pop":28174, "listings_est":25, "nccpi":63,"farm_pct":68,"forest_pct":13,"corn_yield":172,"soy_yield":54,"wheat_yield":70,"rent":250,"hist":[7700,8200,8800,9400,9800,10000],"top_soil":"Blount-Pewamo complex","cattle_stocking":1.8,"timber_val":1200,"top_crops":["Corn","Soybeans","Wheat","Popcorn"]},
+    "Adams":      {"avg":9500, "lo":6200, "hi":13000,"seat":"Decatur",      "pop":35667, "listings_est":30, "nccpi":61,"farm_pct":65,"forest_pct":14,"corn_yield":168,"soy_yield":53,"wheat_yield":68,"rent":240,"hist":[7300,7800,8400,9000,9400,9500],"top_soil":"Blount-Pewamo complex","cattle_stocking":1.9,"timber_val":1200,"top_crops":["Corn","Soybeans","Dairy"]},
+    "Jay":        {"avg":8800, "lo":5500, "hi":12000,"seat":"Portland",     "pop":21058, "listings_est":20, "nccpi":57,"farm_pct":68,"forest_pct":12,"corn_yield":160,"soy_yield":50,"wheat_yield":64,"rent":220,"hist":[6700,7200,7700,8200,8600,8800],"top_soil":"Pewamo-Blount","cattle_stocking":2.0,"timber_val":1100,"top_crops":["Corn","Soybeans","Wheat"]},
+    "Blackford":  {"avg":9000, "lo":5800, "hi":12000,"seat":"Hartford City","pop":11758, "listings_est":15, "nccpi":58,"farm_pct":70,"forest_pct":11,"corn_yield":162,"soy_yield":51,"wheat_yield":65,"rent":225,"hist":[6900,7400,7900,8400,8800,9000],"top_soil":"Blount silt loam","cattle_stocking":2.0,"timber_val":1100,"top_crops":["Corn","Soybeans"]},
+    "Benton":     {"avg":10800,"lo":7500, "hi":14000,"seat":"Fowler",       "pop":8661,  "listings_est":15, "nccpi":68,"farm_pct":82,"forest_pct":5, "corn_yield":182,"soy_yield":58,"wheat_yield":74,"rent":275,"hist":[8300,8900,9500,10100,10600,10800],"top_soil":"Drummer silty clay loam","cattle_stocking":1.7,"timber_val":800,"top_crops":["Corn","Soybeans"]},
+    "Carroll":    {"avg":10500,"lo":7000, "hi":14000,"seat":"Delphi",       "pop":20016, "listings_est":20, "nccpi":65,"farm_pct":72,"forest_pct":14,"corn_yield":178,"soy_yield":56,"wheat_yield":72,"rent":265,"hist":[8100,8600,9200,9800,10300,10500],"top_soil":"Brookston silty clay","cattle_stocking":1.8,"timber_val":1200,"top_crops":["Corn","Soybeans","Wheat"]},
+    "Tippecanoe": {"avg":12000,"lo":8000, "hi":16000,"seat":"Lafayette",    "pop":195732,"listings_est":120,"nccpi":70,"farm_pct":65,"forest_pct":15,"corn_yield":185,"soy_yield":59,"wheat_yield":75,"rent":290,"hist":[9300,9900,10600,11300,11800,12000],"top_soil":"Drummer-Brookston complex","cattle_stocking":1.8,"timber_val":1300,"top_crops":["Corn","Soybeans","Popcorn","Tomatoes"]},
 }
+
+# Crop economics (2026 marketing year estimates)
+CROP_PRICES = {"corn": 4.50, "soybeans": 11.00, "wheat": 6.50, "hay": 180, "alfalfa": 220}
+CROP_COSTS = {"corn": 650, "soybeans": 380, "wheat": 310}  # cost per acre
+
+# Soil quality bands
+def soil_grade(nccpi):
+    if nccpi >= 75: return "Class I", "#3fb950", "Prime — top tier, corn 190+ bu/ac"
+    if nccpi >= 65: return "Class II", "#3fb950", "Excellent — corn 175-190 bu/ac"
+    if nccpi >= 55: return "Class III", "#58a6ff", "Good — corn 160-175 bu/ac"
+    if nccpi >= 45: return "Class IV", "#f0a030", "Fair — corn 145-160 bu/ac"
+    return "Class V+", "#f85149", "Marginal — best for pasture/hay"
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # DEAL SCORING
@@ -637,9 +652,10 @@ c6.metric("Tax/Sheriff", len(tax))
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # TABS
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs([
     "Best Deals", "All Listings", "Auctions & Tax Sales",
-    "County Intel", "Market Charts", "Deal Calculator", "Search All Sites"
+    "County Intel", "Market Charts", "Deal Calculator",
+    "Soil & Land Use", "Historical Trends", "Farm Capacity", "Search All Sites"
 ])
 
 # ─── HELPER: render a deal card ───
@@ -1104,8 +1120,269 @@ with tab6:
         st.caption(f"No sold comps in database for {calc_county} Co. Market data: avg ${cd2.get('avg', 0):,}/ac · range ${cd2.get('lo', 0):,}–${cd2.get('hi', 0):,}/ac")
 
 
-# ─── TAB 7: SEARCH ALL SITES ───
+# ─── TAB 7: SOIL & LAND USE ───
 with tab7:
+    st.markdown("## Soil Quality & Land Use")
+    st.caption("NCCPI = National Commodity Crop Productivity Index (0-100). Higher = better for row crops.")
+
+    # Summary metrics
+    nccpi_vals = [c["nccpi"] for c in COUNTIES.values()]
+    farm_pcts = [c["farm_pct"] for c in COUNTIES.values()]
+    forest_pcts = [c["forest_pct"] for c in COUNTIES.values()]
+
+    sc1, sc2, sc3, sc4 = st.columns(4)
+    sc1.metric("Avg NCCPI (N. IN)", f"{sum(nccpi_vals)/len(nccpi_vals):.0f}")
+    sc2.metric("Best County Soil", max(COUNTIES.items(), key=lambda x: x[1]["nccpi"])[0], f"NCCPI {max(nccpi_vals)}")
+    sc3.metric("Avg % Farmland", f"{sum(farm_pcts)/len(farm_pcts):.0f}%")
+    sc4.metric("Avg % Forest", f"{sum(forest_pcts)/len(forest_pcts):.0f}%")
+
+    st.markdown("---")
+
+    # Soil quality chart
+    st.markdown("### Soil Quality by County (NCCPI Score)")
+    soil_df = pd.DataFrame([
+        {"County": k, "NCCPI": v["nccpi"], "Class": soil_grade(v["nccpi"])[0], "Avg $/Ac": v["avg"]}
+        for k, v in COUNTIES.items()
+    ]).sort_values("NCCPI", ascending=False)
+
+    fig_soil = go.Figure()
+    colors = [soil_grade(n)[1] for n in soil_df["NCCPI"]]
+    fig_soil.add_trace(go.Bar(
+        x=soil_df["County"], y=soil_df["NCCPI"],
+        marker_color=colors,
+        text=[f"{n}" for n in soil_df["NCCPI"]],
+        textposition="outside", textfont_size=10
+    ))
+    fig_soil.add_hline(y=75, line_dash="dash", line_color="#3fb950", annotation_text="Class I (Prime)")
+    fig_soil.add_hline(y=65, line_dash="dash", line_color="#58a6ff", annotation_text="Class II")
+    fig_soil.add_hline(y=55, line_dash="dash", line_color="#f0a030", annotation_text="Class III")
+    fig_soil.update_layout(
+        template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117",
+        height=450, margin=dict(t=20, b=80), yaxis_title="NCCPI Score", xaxis_tickangle=-45,
+    )
+    st.plotly_chart(fig_soil, use_container_width=True)
+
+    # Soil vs Price scatter
+    st.markdown("### Does Better Soil = Higher Price?")
+    fig_scatter = px.scatter(
+        soil_df, x="NCCPI", y="Avg $/Ac", color="Class", size="NCCPI",
+        hover_name="County", text="County",
+        color_discrete_map={"Class I": "#3fb950", "Class II": "#3fb950", "Class III": "#58a6ff", "Class IV": "#f0a030", "Class V+": "#f85149"},
+        title="Soil Quality (NCCPI) vs Farmland Price"
+    )
+    fig_scatter.update_traces(textposition="top center", textfont_size=9)
+    fig_scatter.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", height=500)
+    st.plotly_chart(fig_scatter, use_container_width=True)
+
+    st.markdown("---")
+    st.markdown("### Land Use Breakdown by County")
+    lu_df = pd.DataFrame([
+        {"County": k, "Farmland %": v["farm_pct"], "Forest %": v["forest_pct"], "Other %": 100 - v["farm_pct"] - v["forest_pct"]}
+        for k, v in COUNTIES.items()
+    ]).sort_values("Farmland %", ascending=False)
+
+    fig_lu = go.Figure()
+    fig_lu.add_trace(go.Bar(name="Farmland", x=lu_df["County"], y=lu_df["Farmland %"], marker_color="#f0a030"))
+    fig_lu.add_trace(go.Bar(name="Forest", x=lu_df["County"], y=lu_df["Forest %"], marker_color="#3fb950"))
+    fig_lu.add_trace(go.Bar(name="Other (water/urban/wetland)", x=lu_df["County"], y=lu_df["Other %"], marker_color="#58a6ff"))
+    fig_lu.update_layout(
+        template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117",
+        barmode="stack", height=450, margin=dict(t=20, b=80), yaxis_title="% of County", xaxis_tickangle=-45,
+    )
+    st.plotly_chart(fig_lu, use_container_width=True)
+
+    st.markdown("---")
+    st.markdown("### Soil Details by County")
+    soil_detail_df = pd.DataFrame([
+        {
+            "County": k,
+            "NCCPI": v["nccpi"],
+            "Class": soil_grade(v["nccpi"])[0],
+            "Top Soil Types": v["top_soil"],
+            "Top Crops": ", ".join(v["top_crops"][:3]),
+            "Farm %": f"{v['farm_pct']}%",
+            "Forest %": f"{v['forest_pct']}%",
+        }
+        for k, v in sorted(COUNTIES.items(), key=lambda x: -x[1]["nccpi"])
+    ])
+    st.dataframe(soil_detail_df, use_container_width=True, hide_index=True)
+
+
+# ─── TAB 8: HISTORICAL TRENDS ───
+with tab8:
+    st.markdown("## Historical Price Trends (2020-2025)")
+    st.caption("$/acre averages from Indiana Farmland Values Survey + actual sold comps")
+
+    # Price trend chart — all counties
+    years = ["2020", "2021", "2022", "2023", "2024", "2025"]
+    hist_df_rows = []
+    for co, data in COUNTIES.items():
+        for i, y in enumerate(years):
+            hist_df_rows.append({"County": co, "Year": y, "$/Acre": data["hist"][i]})
+    hist_df = pd.DataFrame(hist_df_rows)
+
+    # Top 10 most expensive + bottom 10 cheapest
+    top_counties = sorted(COUNTIES.items(), key=lambda x: -x[1]["avg"])[:10]
+    bot_counties = sorted(COUNTIES.items(), key=lambda x: x[1]["avg"])[:10]
+
+    col_t1, col_t2 = st.columns(2)
+    with col_t1:
+        st.markdown("#### Most Expensive Counties (Trend)")
+        fig_top = go.Figure()
+        for co, _ in top_counties:
+            co_data = hist_df[hist_df["County"] == co]
+            fig_top.add_trace(go.Scatter(x=co_data["Year"], y=co_data["$/Acre"], name=co, mode="lines+markers"))
+        fig_top.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", height=400, yaxis_title="$/Acre")
+        st.plotly_chart(fig_top, use_container_width=True)
+
+    with col_t2:
+        st.markdown("#### Cheapest Counties (Trend)")
+        fig_bot = go.Figure()
+        for co, _ in bot_counties:
+            co_data = hist_df[hist_df["County"] == co]
+            fig_bot.add_trace(go.Scatter(x=co_data["Year"], y=co_data["$/Acre"], name=co, mode="lines+markers"))
+        fig_bot.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", height=400, yaxis_title="$/Acre")
+        st.plotly_chart(fig_bot, use_container_width=True)
+
+    st.markdown("---")
+    st.markdown("### 5-Year Appreciation by County")
+    apprec = []
+    for co, data in COUNTIES.items():
+        start = data["hist"][0]
+        end = data["hist"][-1]
+        pct = ((end - start) / start) * 100
+        cagr = (((end / start) ** (1/5)) - 1) * 100
+        apprec.append({"County": co, "2020": start, "2025": end, "5yr %": round(pct, 1), "CAGR": round(cagr, 1)})
+    apprec_df = pd.DataFrame(apprec).sort_values("5yr %", ascending=False)
+
+    fig_apprec = px.bar(apprec_df, x="County", y="5yr %",
+                        color="5yr %", color_continuous_scale=[[0, "#f85149"], [0.5, "#f0a030"], [1, "#3fb950"]],
+                        title="5-Year Price Appreciation (%)")
+    fig_apprec.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", height=400, xaxis_tickangle=-45)
+    st.plotly_chart(fig_apprec, use_container_width=True)
+
+    st.dataframe(apprec_df, use_container_width=True, hide_index=True)
+
+    st.markdown("---")
+    st.markdown("### Sold Comps Database")
+    sold = df[df["listing_type"] == "Sold Comp"].sort_values("price_per_acre", ascending=False) if "listing_type" in df.columns else pd.DataFrame()
+    if len(sold) > 0:
+        sold_display = sold[["title", "location", "county", "acres", "price", "price_per_acre", "source"]].copy()
+        sold_display.columns = ["Property", "Location", "County", "Acres", "Sale Price", "$/Acre", "Source"]
+        sold_display["Sale Price"] = sold_display["Sale Price"].apply(lambda x: f"${x:,.0f}" if pd.notna(x) else "—")
+        sold_display["$/Acre"] = sold_display["$/Acre"].apply(lambda x: f"${x:,.0f}" if pd.notna(x) else "—")
+        st.dataframe(sold_display, use_container_width=True, hide_index=True)
+    else:
+        st.info("No sold comps in current filter.")
+
+
+# ─── TAB 9: FARM CAPACITY ───
+with tab9:
+    st.markdown("## Farm Capacity Analysis")
+    st.caption("What can the land actually produce? Revenue calculations based on 2026 crop prices.")
+
+    st.markdown("### Expected Crop Yields by County")
+    yield_df = pd.DataFrame([
+        {
+            "County": k,
+            "NCCPI": v["nccpi"],
+            "Corn (bu/ac)": v["corn_yield"],
+            "Soy (bu/ac)": v["soy_yield"],
+            "Wheat (bu/ac)": v["wheat_yield"],
+            "Rent ($/ac)": v["rent"],
+            "Cattle (head/ac)": 1/v["cattle_stocking"],
+        }
+        for k, v in sorted(COUNTIES.items(), key=lambda x: -x[1]["corn_yield"])
+    ])
+
+    fig_yield = go.Figure()
+    fig_yield.add_trace(go.Bar(name="Corn (bu/ac)", x=yield_df["County"], y=yield_df["Corn (bu/ac)"], marker_color="#f0a030"))
+    fig_yield.add_trace(go.Bar(name="Soy × 3 (bu/ac)", x=yield_df["County"], y=yield_df["Soy (bu/ac)"] * 3, marker_color="#3fb950"))
+    fig_yield.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", height=400, barmode="group", xaxis_tickangle=-45, yaxis_title="Bushels/Acre")
+    st.plotly_chart(fig_yield, use_container_width=True)
+
+    st.markdown("---")
+    st.markdown("### Revenue per Acre by Crop (2026 Prices)")
+    st.caption(f"Corn: ${CROP_PRICES['corn']}/bu | Soy: ${CROP_PRICES['soybeans']}/bu | Wheat: ${CROP_PRICES['wheat']}/bu")
+
+    rev_rows = []
+    for co, v in COUNTIES.items():
+        corn_rev = v["corn_yield"] * CROP_PRICES["corn"]
+        soy_rev = v["soy_yield"] * CROP_PRICES["soybeans"]
+        corn_profit = corn_rev - CROP_COSTS["corn"]
+        soy_profit = soy_rev - CROP_COSTS["soybeans"]
+        rev_rows.append({
+            "County": co,
+            "Corn Revenue/ac": corn_rev,
+            "Corn Profit/ac": corn_profit,
+            "Soy Revenue/ac": soy_rev,
+            "Soy Profit/ac": soy_profit,
+            "Farm Rent/ac": v["rent"],
+        })
+    rev_df = pd.DataFrame(rev_rows).sort_values("Corn Profit/ac", ascending=False)
+
+    fig_rev = go.Figure()
+    fig_rev.add_trace(go.Bar(name="Corn Profit", x=rev_df["County"], y=rev_df["Corn Profit/ac"], marker_color="#f0a030"))
+    fig_rev.add_trace(go.Bar(name="Soy Profit", x=rev_df["County"], y=rev_df["Soy Profit/ac"], marker_color="#3fb950"))
+    fig_rev.add_trace(go.Bar(name="Cash Rent", x=rev_df["County"], y=rev_df["Farm Rent/ac"], marker_color="#58a6ff"))
+    fig_rev.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", height=450, barmode="group", xaxis_tickangle=-45, yaxis_title="$/Acre")
+    st.plotly_chart(fig_rev, use_container_width=True)
+
+    st.markdown("---")
+    st.markdown("### ROI Comparison: Farm Rent vs CRP vs Development vs Timber")
+
+    roi_data = []
+    for co, v in COUNTIES.items():
+        price = v["avg"]
+        roi_data.append({
+            "County": co,
+            "Farm Rent Yield": round((v["rent"] / price) * 100, 2),
+            "CRP Yield (est)": round((200 / price) * 100, 2),
+            "Corn Op Yield": round(((v["corn_yield"] * CROP_PRICES["corn"] - CROP_COSTS["corn"]) / price) * 100, 2),
+        })
+    roi_df = pd.DataFrame(roi_data).sort_values("Corn Op Yield", ascending=False)
+
+    fig_roi = go.Figure()
+    fig_roi.add_trace(go.Bar(name="Cash Rent %", x=roi_df["County"], y=roi_df["Farm Rent Yield"], marker_color="#58a6ff"))
+    fig_roi.add_trace(go.Bar(name="CRP %", x=roi_df["County"], y=roi_df["CRP Yield (est)"], marker_color="#3fb950"))
+    fig_roi.add_trace(go.Bar(name="Operate Corn %", x=roi_df["County"], y=roi_df["Corn Op Yield"], marker_color="#f0a030"))
+    fig_roi.update_layout(template="plotly_dark", paper_bgcolor="#0d1117", plot_bgcolor="#0d1117", height=450, barmode="group", xaxis_tickangle=-45, yaxis_title="Annual Yield %")
+    st.plotly_chart(fig_roi, use_container_width=True)
+
+    st.markdown("---")
+    st.markdown("### Detailed County Farm Economics")
+    econ_df = pd.DataFrame([
+        {
+            "County": k,
+            "NCCPI": v["nccpi"],
+            "Corn (bu)": v["corn_yield"],
+            "Soy (bu)": v["soy_yield"],
+            "Corn Rev/ac": f"${v['corn_yield'] * CROP_PRICES['corn']:,.0f}",
+            "Soy Rev/ac": f"${v['soy_yield'] * CROP_PRICES['soybeans']:,.0f}",
+            "Cash Rent": f"${v['rent']}",
+            "Cash Yield %": f"{(v['rent'] / v['avg']) * 100:.1f}%",
+            "Timber $/ac": f"${v['timber_val']:,}",
+            "Top Crops": ", ".join(v["top_crops"][:3]),
+        }
+        for k, v in sorted(COUNTIES.items(), key=lambda x: -x[1]["corn_yield"])
+    ])
+    st.dataframe(econ_df, use_container_width=True, hide_index=True)
+
+    st.markdown("---")
+    st.markdown("### Best Use Recommendations by Soil Class")
+    st.markdown("""
+| Soil Class | NCCPI | Best Use | Expected Return |
+|---|---|---|---|
+| **Class I — Prime** | 75+ | Intensive row crops (corn/soy rotation), specialty crops, seed production | Cash rent $300-400/ac, operate $400-600/ac profit |
+| **Class II — Excellent** | 65-74 | Standard corn/soy, wheat, popcorn | Cash rent $260-320/ac, operate $300-450/ac profit |
+| **Class III — Good** | 55-64 | Corn/soy, hay, alfalfa, pasture | Cash rent $220-270/ac, operate $200-350/ac profit |
+| **Class IV — Fair** | 45-54 | Hay, pasture, livestock, timber | Cash rent $150-220/ac, cattle 1 pair/1.5-2 ac |
+| **Class V+ — Marginal** | <45 | Pasture, timber, CRP, recreation | CRP $150-250/ac, timber, hunting lease $15-30/ac |
+""")
+
+
+# ─── TAB 10: SEARCH ALL SITES ───
+with tab10:
     st.markdown("## Search Every Listing Site")
     st.markdown(f"This dashboard has **{len(ALL_LISTINGS)} scraped listings**. The full market has **thousands** more across these sites:")
 
