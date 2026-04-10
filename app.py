@@ -138,21 +138,25 @@ def grade(row):
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 SEED_LISTINGS = [
     # ═══════ MOSSY OAK PROPERTIES ═══════
-    {"title": "84.1 Ac Recreational / Development — Michigan City", "location": "Michigan City", "county": "LaPorte", "acres": 84.1, "price": 1250000, "price_per_acre": 14865, "listing_type": "For Sale", "property_type": "Recreational/Development", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["wooded", "tillable", "development"], "why": "Rare combo near Michigan City. Rec + dev upside.", "is_new": False},
-    {"title": "Rensselaer 72 Ac Farmland — Jasper Co", "location": "Rensselaer", "county": "Jasper", "acres": 72, "price": 899999, "price_per_acre": 12500, "listing_type": "For Sale", "property_type": "Farmland", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["farmland", "investment"], "why": "Productive ground near town.", "is_new": False},
-    {"title": "64 Ac Tillable Investment — LaPorte SR 39", "location": "LaPorte", "county": "LaPorte", "acres": 64, "price": 875000, "price_per_acre": 13672, "listing_type": "For Sale", "property_type": "Farmland", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["tillable", "highway-frontage"], "why": "Highway frontage, quality soils, easy to lease.", "is_new": False},
-    {"title": "2 Ac Commercial Lot — Porter, US 6", "location": "Porter", "county": "Porter", "acres": 2, "price": 695000, "price_per_acre": 347500, "listing_type": "For Sale", "property_type": "Commercial", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["commercial", "high-visibility"], "why": "Corner lot on US 6 — commercial premium.", "is_new": False},
-    {"title": "35 Ac Tillable — LaPorte SR 39", "location": "LaPorte", "county": "LaPorte", "acres": 35, "price": 510000, "price_per_acre": 14571, "listing_type": "For Sale", "property_type": "Farmland", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["tillable", "building-sites"], "why": "Level, all tillable, potential building sites.", "is_new": False},
-    {"title": "Jasper 57 Ac All-Timber Hunting", "location": "Rensselaer", "county": "Jasper", "acres": 57, "price": 499000, "price_per_acre": 8754, "listing_type": "For Sale", "property_type": "Hunting/Timber", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["timber", "hunting", "recreational"], "why": "$8,754/ac for timber surrounded by crops — great hunting.", "is_new": False},
-    {"title": "50 Ac Multi-Use — Starke Co 400 S", "location": "Knox", "county": "Starke", "acres": 50, "price": 400000, "price_per_acre": 8000, "listing_type": "For Sale", "property_type": "Multi-Use", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["multi-use", "road-frontage"], "why": "Good road frontage, versatile use in cheap county.", "is_new": False},
-    {"title": "48 Ac Recreational — Knox, Starke Co", "location": "Knox", "county": "Starke", "acres": 48, "price": 379900, "price_per_acre": 7914, "listing_type": "For Sale", "property_type": "Recreational", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["recreational", "building-site"], "why": "Below Starke avg. Future homesite or getaway.", "is_new": False},
-    {"title": "28 Ac Tillable — LaPorte SR 39", "location": "LaPorte", "county": "LaPorte", "acres": 28, "price": 375000, "price_per_acre": 13393, "listing_type": "For Sale", "property_type": "Farmland", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["tillable", "1031-exchange"], "why": "Good for 1031 exchange buyers.", "is_new": False},
-    {"title": "26.4 Ac Hunting Land — Starke Co", "location": "Knox", "county": "Starke", "acres": 26.4, "price": 215000, "price_per_acre": 8144, "listing_type": "For Sale", "property_type": "Hunting", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["hunting", "road-frontage"], "why": "Dual road frontage, great deer habitat.", "is_new": False},
-    {"title": "21.6 Ac Recreational — Starke Co", "location": "Knox", "county": "Starke", "acres": 21.61, "price": 199900, "price_per_acre": 9256, "listing_type": "For Sale", "property_type": "Recreational", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["recreational", "camping", "building-site"], "why": "Private getaway with building potential.", "is_new": False},
+    {"title": "84.1 Ac Recreational / Development — Michigan City", "location": "Michigan City", "county": "LaPorte", "acres": 84.1, "price": 1250000, "price_per_acre": 14865, "listing_type": "For Sale", "property_type": "Recreational/Development", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/property/84-143-acres-michigan-city-in-recreational-potential-development-land-for-sale-laporte-indiana/80006/", "auction_date": None, "tags": ["wooded", "tillable", "development"], "why": "Rare combo near Michigan City. Rec + dev upside.", "is_new": False, "status": "Active"},
+    {"title": "Rensselaer 72 Ac Farmland — Jasper Co", "location": "Rensselaer", "county": "Jasper", "acres": 72, "price": 899999, "price_per_acre": 12500, "listing_type": "For Sale", "property_type": "Farmland", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/property/rensselaer-72-jasper-indiana/94880/", "auction_date": None, "tags": ["farmland", "investment"], "why": "Productive ground near town.", "is_new": False, "status": "Active"},
+    {"title": "64 Ac Tillable Investment — LaPorte SR 39", "location": "LaPorte", "county": "LaPorte", "acres": 64, "price": 875000, "price_per_acre": 13672, "listing_type": "For Sale", "property_type": "Farmland", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/property/64-acres-laporte-county-tillabe-investment-land-for-sale-laporte-indiana/81775/", "auction_date": None, "tags": ["tillable", "highway-frontage"], "why": "Highway frontage, quality soils, easy to lease.", "is_new": False, "status": "Active"},
+    {"title": "2 Ac Commercial Lot — Porter, US 6", "location": "Porter", "county": "Porter", "acres": 2, "price": 695000, "price_per_acre": 347500, "listing_type": "For Sale", "property_type": "Commercial", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["commercial", "high-visibility"], "why": "Corner lot on US 6 — commercial premium.", "is_new": False, "status": "Active"},
+    {"title": "35 Ac Tillable — LaPorte SR 39", "location": "LaPorte", "county": "LaPorte", "acres": 35, "price": 510000, "price_per_acre": 14571, "listing_type": "For Sale", "property_type": "Farmland", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["tillable", "building-sites"], "why": "Level, all tillable, potential building sites.", "is_new": False, "status": "Active"},
+    {"title": "Jasper 57 Ac All-Timber Hunting", "location": "Rensselaer", "county": "Jasper", "acres": 57, "price": 499000, "price_per_acre": 8754, "listing_type": "For Sale", "property_type": "Hunting/Timber", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/property/jasper-57-jasper-indiana/98999/", "auction_date": None, "tags": ["timber", "hunting", "recreational"], "why": "$8,754/ac for timber surrounded by crops — great hunting.", "is_new": False, "status": "Price Reduced"},
+    {"title": "50 Ac Multi-Use — Starke Co 400 S", "location": "Knox", "county": "Starke", "acres": 50, "price": 400000, "price_per_acre": 8000, "listing_type": "For Sale", "property_type": "Multi-Use", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/property/50-acres-400-s-starke-county-land-for-sale-starke-indiana/101753/", "auction_date": None, "tags": ["multi-use", "road-frontage"], "why": "Good road frontage, versatile use in cheap county.", "is_new": False, "status": "Active"},
+    {"title": "48 Ac Recreational — Knox, Starke Co", "location": "Knox", "county": "Starke", "acres": 48, "price": 379900, "price_per_acre": 7914, "listing_type": "For Sale", "property_type": "Recreational", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/property/48-acres-100-n-knox-in-46534-starke-county-land-for-sale-starke-indiana/88556/", "auction_date": None, "tags": ["recreational", "building-site"], "why": "Below Starke avg. Future homesite or getaway.", "is_new": False, "status": "Active"},
+    {"title": "28 Ac Tillable — LaPorte SR 39", "location": "LaPorte", "county": "LaPorte", "acres": 28, "price": 375000, "price_per_acre": 13393, "listing_type": "For Sale", "property_type": "Farmland", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/land-for-sale/indiana/northwest/", "auction_date": None, "tags": ["tillable", "1031-exchange"], "why": "Good for 1031 exchange buyers.", "is_new": False, "status": "Active"},
+    {"title": "26.4 Ac Hunting Land — Starke Co", "location": "Knox", "county": "Starke", "acres": 26.4, "price": 215000, "price_per_acre": 8144, "listing_type": "For Sale", "property_type": "Hunting", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/property/26-4-acres-starke-county-hunting-land-wooded-acreage-land-for-sale-starke-indiana/97638/", "auction_date": None, "tags": ["hunting", "road-frontage"], "why": "Dual road frontage, great deer habitat.", "is_new": False, "status": "Active"},
+    {"title": "21.6 Ac Recreational — Starke Co", "location": "Knox", "county": "Starke", "acres": 21.61, "price": 199900, "price_per_acre": 9256, "listing_type": "For Sale", "property_type": "Recreational", "source": "Mossy Oak Properties", "url": "https://www.mossyoakproperties.com/property/21-61-acres-starke-county-land-for-sale-starke-indiana/93507/", "auction_date": None, "tags": ["recreational", "camping", "building-site"], "why": "Private getaway with building potential.", "is_new": False, "status": "Active"},
 
     # ═══════ HALDERMAN ═══════
-    {"title": "Warren J Hill Trust — 151 Ac LaPorte/Porter", "location": "Clinton/Washington Twp", "county": "LaPorte", "acres": 151.48, "price": None, "price_per_acre": None, "listing_type": "Private Listing", "property_type": "Farmland", "source": "Halderman", "url": "https://www.halderman.com/property-listings/", "auction_date": None, "tags": ["farmland", "multi-county", "trust-sale"], "why": "Trust sale spanning 2 counties — likely priced to close.", "is_new": False},
-    {"title": "Merriman Farm — 53.5 Ac Jasper Co", "location": "Union Twp", "county": "Jasper", "acres": 53.53, "price": None, "price_per_acre": None, "listing_type": "Private Listing", "property_type": "Farmland", "source": "Halderman", "url": "https://www.halderman.com/property-listings/", "auction_date": None, "tags": ["farmland", "crop-credit"], "why": "Buyer credited $235/tillable ac — built-in discount.", "is_new": False},
+    {"title": "Warren J Hill Trust — 151 Ac LaPorte/Porter", "location": "Clinton/Washington Twp", "county": "LaPorte", "acres": 151.48, "price": None, "price_per_acre": None, "listing_type": "Private Listing", "property_type": "Farmland", "source": "Halderman", "url": "https://www.halderman.com/real-estate-listing/?id=a1441a18-9b2b-2798-5c5e-6995f7bbd903", "auction_date": None, "tags": ["farmland", "multi-county", "trust-sale"], "why": "Trust sale spanning 2 counties — likely priced to close.", "is_new": False, "status": "Active"},
+    {"title": "Merriman Farm — 53.5 Ac Jasper Co", "location": "Union Twp", "county": "Jasper", "acres": 53.53, "price": None, "price_per_acre": None, "listing_type": "Private Listing", "property_type": "Farmland", "source": "Halderman", "url": "https://www.halderman.com/real-estate-listing/?id=777c94e4-7714-9186-b3a6-696e7535b6c5", "auction_date": None, "tags": ["farmland", "crop-credit"], "why": "Buyer credited $235/tillable ac — built-in discount.", "is_new": False, "status": "Active"},
+    # NEW Halderman auctions (scraped 4/10/2026) with direct URLs
+    {"title": "Sharyn Staley Farm — 51.72 Ac Rock Creek Twp", "location": "Rock Creek Twp", "county": "Huntington", "acres": 51.72, "price": None, "price_per_acre": None, "listing_type": "Auction", "property_type": "Farmland", "source": "Halderman", "url": "https://www.halderman.com/real-estate-listing/?id=b4cc0cde-4d20-6d00-e752-69a5da8c5952", "auction_date": "2026-04-16", "tags": ["auction", "farmland", "huntington"], "why": "Culvert bridge installation paid by seller. Current auction.", "is_new": True, "status": "Auction - Active"},
+    {"title": "Dr. Edward O'Connor Farms — 131.80 Ac Pulaski", "location": "Monroe Twp", "county": "Pulaski", "acres": 131.80, "price": None, "price_per_acre": None, "listing_type": "Auction", "property_type": "Farmland", "source": "Halderman", "url": "https://www.halderman.com/real-estate-listing/?id=f0019746-8c5a-4000-e9d1-69bb1bb2a5dc", "auction_date": "2026-05-18", "tags": ["auction", "farmland", "pulaski", "large-tract"], "why": "132 ac in Pulaski = cheap county + auction = potential steal.", "is_new": True, "status": "Auction - Active"},
+    {"title": "Pepsi Brookman Farm Holdings — 173.36 Ac Newton", "location": "Grant Twp", "county": "Newton", "acres": 173.36, "price": 2775000, "price_per_acre": 16008, "listing_type": "Private Listing", "property_type": "Farmland", "source": "Halderman", "url": "https://www.halderman.com/real-estate-listing/?id=5945592e-d0fb-5552-c8e3-69c14ca1ef51", "auction_date": None, "tags": ["farmland", "large-tract", "newton", "premium"], "why": "Large Newton Co tract with price listed. Premium farmland.", "is_new": True, "status": "Active"},
     {"title": "80 Ac Productive Farmground — St. Joseph Co", "location": "Bremen", "county": "St. Joseph", "acres": 80, "price": None, "price_per_acre": None, "listing_type": "Private Listing", "property_type": "Farmland", "source": "Geswein Farm & Land", "url": "https://gfarmland.com/farm-real-estate/", "auction_date": None, "tags": ["farmland", "high-quality"], "why": "High quality ground near Bremen.", "is_new": False},
 
     # ═══════ RANCH & FARM AUCTIONS — Gillham 8-tract auction ═══════
@@ -184,7 +188,13 @@ SEED_LISTINGS = [
     {"title": "15.87 Ac Wooded Estate w/ Home", "location": "La Porte", "county": "LaPorte", "acres": 15.87, "price": 1297990, "price_per_acre": 81789, "listing_type": "For Sale", "property_type": "Residential Estate", "source": "LandWatch", "url": "https://www.landwatch.com/indiana-land-for-sale/laporte-county", "auction_date": None, "tags": ["estate", "luxury", "wooded"], "why": "Premium property — wooded estate on US 35.", "is_new": False},
 
     # ═══════ GESWEIN ═══════
-    {"title": "188 Ac Land Auction — Jasper Co (SOLD)", "location": "Jasper County", "county": "Jasper", "acres": 188, "price": None, "price_per_acre": None, "listing_type": "Sold Comp", "property_type": "Farmland", "source": "Geswein Farm & Land", "url": "https://gfarmland.com/farm-real-estate/", "auction_date": None, "tags": ["comp", "sold", "auction"], "why": None, "is_new": False},
+    {"title": "188 Ac Land Auction — Jasper Co (SOLD)", "location": "Jasper County", "county": "Jasper", "acres": 188, "price": None, "price_per_acre": None, "listing_type": "Sold Comp", "property_type": "Farmland", "source": "Geswein Farm & Land", "url": "https://gfarmland.com/for-sale/188-acres-land-auction-jasper-county-auction/", "auction_date": None, "tags": ["comp", "sold", "auction"], "why": None, "is_new": False, "status": "SOLD"},
+    # Geswein Farm & Land direct links (scraped 4/10/2026)
+    {"title": "80 Ac Productive Farmground — Bremen, St. Joseph Co", "location": "Bremen", "county": "St. Joseph", "acres": 80, "price": None, "price_per_acre": None, "listing_type": "For Sale", "property_type": "Farmland", "source": "Geswein Farm & Land", "url": "https://gfarmland.com/for-sale/80_acres_tillable_st-joseph_county/", "auction_date": None, "tags": ["farmland", "tillable", "bremen"], "why": "High-quality tillable near Bremen.", "is_new": True, "status": "Active"},
+    {"title": "120 Ac Bartholomew Co — Log Home + Timber + Tillable", "location": "Bartholomew County", "county": "Bartholomew", "acres": 120, "price": None, "price_per_acre": None, "listing_type": "For Sale", "property_type": "Mixed Use", "source": "Geswein Farm & Land", "url": "https://gfarmland.com/for-sale/120-acres-bartholomew-county-rustic-log-home-timber-tillable/", "auction_date": None, "tags": ["log-home", "timber", "tillable"], "why": "Log home + diversified land use.", "is_new": True, "status": "Active"},
+    {"title": "108 Ac Class A Farmland — Clinton Co", "location": "Clinton County", "county": "Clinton", "acres": 108, "price": None, "price_per_acre": None, "listing_type": "For Sale", "property_type": "Farmland", "source": "Geswein Farm & Land", "url": "https://gfarmland.com/for-sale/108-acres-clinton-county-top-quality-investment-grade/", "auction_date": None, "tags": ["class-a", "investment-grade", "premium"], "why": "Top quality investment grade farmland. Class A soils.", "is_new": True, "status": "SALE PENDING"},
+    {"title": "120 Ac Tillable + Wind Turbine + Pattern Tile — Benton Co", "location": "Benton County", "county": "Benton", "acres": 120, "price": None, "price_per_acre": None, "listing_type": "For Sale", "property_type": "Farmland", "source": "Geswein Farm & Land", "url": "https://gfarmland.com/for-sale/120-ac-tillable-turbine-pattern-tile/", "auction_date": None, "tags": ["tillable", "wind-turbine", "tile-drained", "income"], "why": "Wind turbine royalty + pattern tile + tillable = multiple income streams.", "is_new": True, "status": "SALE PENDING"},
+    {"title": "80 Ac Tillable — Union Twp, Benton Co", "location": "Union Twp", "county": "Benton", "acres": 80, "price": None, "price_per_acre": None, "listing_type": "For Sale", "property_type": "Farmland", "source": "Geswein Farm & Land", "url": "https://gfarmland.com/for-sale/80-acres-tillable-union-township-benton-county/", "auction_date": None, "tags": ["tillable", "productive"], "why": "Productive farmground in Benton Co.", "is_new": True, "status": "SALE PENDING"},
 
     # ═══════ MULTI-COUNTY LISTINGS ═══════
     {"title": "120 Ac Tillable — Knox Area, Starke Co", "location": "North Bend Twp", "county": "Starke", "acres": 120, "price": 660000, "price_per_acre": 5500, "listing_type": "For Sale", "property_type": "Farmland", "source": "Land.com", "url": "https://www.land.com/Starke-County-IN/all-land/", "auction_date": None, "tags": ["farmland", "affordable"], "why": "$5,500/ac = bottom of Starke comps. One of cheapest farming counties.", "is_new": False},
@@ -541,9 +551,11 @@ ALL_LISTINGS = SEED_LISTINGS + unique_live
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 df = pd.DataFrame(ALL_LISTINGS)
 # Ensure all required columns exist
-for col in ["is_new", "assessed_value"]:
+for col in ["is_new", "assessed_value", "status"]:
     if col not in df.columns:
         df[col] = None
+# Default status = "Unknown - Verify"
+df["status"] = df["status"].fillna("Unknown - Verify")
 
 grades = df.apply(grade, axis=1)
 df["grade"] = [g[0] for g in grades]
@@ -578,6 +590,11 @@ with st.sidebar:
     st.markdown("**Deal Grade**")
     only_good = st.checkbox("Only A/A+/B+ deals", value=False)
     show_new_only = st.checkbox("Show new listings only", value=False)
+
+    st.markdown("**Listing Status**")
+    hide_sold = st.checkbox("Hide SOLD/Under Contract", value=True)
+    hide_pending = st.checkbox("Hide PENDING", value=False)
+    only_direct_links = st.checkbox("Only listings with direct URLs", value=False, help="Filter to only show listings where we have the exact property page URL")
 
     st.markdown("**Price**")
     max_price = st.number_input("Max Total Price ($)", value=0, step=50000, help="0 = no limit")
@@ -646,6 +663,59 @@ with st.sidebar:
 - [Huntington](https://www.land.com/Huntington-County-IN/all-land/) · [Cass](https://www.land.com/Cass-County-IN/all-land/) · [Miami](https://www.land.com/Miami-County-IN/all-land/)
 - [Wells](https://www.land.com/Wells-County-IN/all-land/) · [Adams](https://www.land.com/Adams-County-IN/all-land/) · [Carroll](https://www.land.com/Carroll-County-IN/all-land/)
 - [Tippecanoe](https://www.land.com/Tippecanoe-County-IN/all-land/) · [Benton](https://www.land.com/Benton-County-IN/all-land/) · [Jay](https://www.land.com/Jay-County-IN/all-land/)
+
+**SW Michigan:**
+- [Berrien Co (909)](https://www.landwatch.com/michigan-land-for-sale/berrien-county)
+- [Cass Co MI (207)](https://www.landandfarm.com/search/michigan/cass-county-land-for-sale/)
+- [St. Joseph Co MI](https://www.landwatch.com/michigan-land-for-sale/st-joseph-county)
+- [Branch Co (240)](https://www.landwatch.com/michigan-land-for-sale/branch-county)
+- [Van Buren Co (350)](https://www.landwatch.com/michigan-land-for-sale/van-buren-county)
+- [Michigan Whitetail Properties](https://michiganwhitetailproperties.com/michigan-land-for-sale/)
+- [MI Land for Sale — Mossy Oak](https://www.mossyoakproperties.com/land-for-sale/michigan/)
+- [Cressy & Everett — SW MI](https://www.cressyeverett.com/)
+
+**More Listing Sites:**
+- [LandFlip — IN](https://www.landflip.com/in)
+- [Acres.com — IN](https://www.acres.com/plat-map/land-for-sale/in)
+- [ByOwner — Newton Co](https://www.byowner.com/county/indiana/newton/property-type=land)
+- [LandBrokerMLS — IN](https://www.landbrokermls.com/indiana-land-for-sale)
+- [AuctionFlip — IN](https://www.auctionflip.com/land-auctions/indiana)
+- [AuctionGuy — IN](https://www.auctionguy.com/IN-auctions.html)
+- [FarmWeekNow Auctions](https://www.farmweeknow.com/auctions/)
+- [BigIron — Sullivan](https://www.bigiron.com/sullivan)
+- [TractorZoom — IN](https://tractorzoom.com/auctioneer/midwest/indiana/)
+- [Hahn Realty & Auction](https://hahnrealtyandauction.com/auction/)
+- [Whitetail Properties — IN](https://www.whitetailproperties.com/land-for-sale/indiana-land-for-sale/)
+- [Base Camp Leasing](https://basecampleasing.com/land-for-sale/)
+- [United Country — IN](https://www.unitedcountry.com/indiana/)
+- [Trulia — IN Land](https://www.trulia.com/for_sale/Indiana/LAND_type/)
+- [Coldwell Banker — IN Land](https://www.coldwellbankerhomes.com/state/in/land_only-type/)
+
+**GIS / Parcel Research:**
+- [Beacon/Schneider — IN](https://beacon.schneidercorp.com/)
+- [Regrid — US Parcels](https://app.regrid.com/us)
+- [AcreValue — IN](https://www.acrevalue.com/map/IN/)
+- [Acres.com Plat Maps](https://www.acres.com/plat-map/in)
+- [IndianaMap](https://www.indianamap.org/)
+- [IN GIS](https://gis.indiana.gov/)
+- [USDA NRCS Soil Survey](https://websoilsurvey.nrcs.usda.gov/)
+- [USDA FSA Maps](https://www.fsa.usda.gov/)
+- [FEMA Flood Map](https://msc.fema.gov/portal/home)
+
+**More Tax/Sheriff Sale Sources:**
+- [SRI Services — Main](https://www.sriservices.com/)
+- [SRI — Auction List](https://properties.sriservices.com/auctionlist)
+- [SRI — SB156 List](https://properties.sriservices.com/sb156list)
+- [Tax Sale Resources — IN](https://www.taxsaleresources.com/state/indiana)
+- [HomeTaxSale — LaPorte](https://hometaxsale.com/auction/in/laporte)
+- [Kvachkoff Law — Tax Sales](https://www.kvachkofflaw.com/tax-sales/)
+- [Porter Co Sheriff Sales](https://www.portercountysheriff.com/sheriffsales)
+- [Steuben Co Tax Sale](https://www.co.steuben.in.us/departments/auditor/tax_sale.php)
+- [Whitley Co Tax Sale](https://www.whitleycounty.in.gov/department/division.php?structureid=54)
+- [Hamilton Co Tax Sale](https://www.hamiltoncounty.in.gov/452/Real-Property-Tax-Sale)
+- [Hancock Co Tax Sale](https://www.hancockin.gov/177/Tax-Sale)
+- [Hendricks Co Tax Sale](https://www.co.hendricks.in.us/)
+- [Indy Sheriff Sales](https://www.indy.gov/activity/sheriff-real-estate-sales)
 """)
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -659,6 +729,12 @@ if only_good:
     f = f[f["grade"].isin(["A+", "A", "B+"])]
 if show_new_only:
     f = f[f["is_new"] == True]
+if hide_sold:
+    f = f[~f["status"].fillna("Unknown").str.upper().str.contains("SOLD|UNDER CONTRACT", na=False)]
+if hide_pending:
+    f = f[~f["status"].fillna("Unknown").str.upper().str.contains("PENDING", na=False)]
+if only_direct_links:
+    f = f[f["url"].fillna("").str.contains("/property/|/real-estate-listing/\\?id=|/auction-event/|/for-sale/", regex=True, na=False)]
 if max_price > 0:
     f = f[(f["price"].isna()) | (f["price"] <= max_price)]
 if max_ppa > 0:
@@ -705,6 +781,40 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs([
 ])
 
 # ─── HELPER: render a deal card ───
+def status_badge(status):
+    """Return HTML badge for listing status"""
+    if not status or pd.isna(status):
+        status = "Unknown"
+    s = str(status).upper()
+    if "SOLD" in s or "UNDER CONTRACT" in s:
+        return f'<span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#f8514920;color:#f85149;margin-left:6px;">{status}</span>'
+    if "PENDING" in s:
+        return f'<span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#f0a03020;color:#f0a030;margin-left:6px;">{status}</span>'
+    if "ACTIVE" in s or "AVAILABLE" in s or "NEW LISTING" in s:
+        return f'<span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#3fb95020;color:#3fb950;margin-left:6px;">ACTIVE</span>'
+    if "AUCTION" in s:
+        return f'<span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#bc8cff20;color:#bc8cff;margin-left:6px;">{status}</span>'
+    if "PRICE REDUCED" in s:
+        return f'<span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#39d2c020;color:#39d2c0;margin-left:6px;">REDUCED</span>'
+    return f'<span style="display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#8b949e20;color:#8b949e;margin-left:6px;">VERIFY</span>'
+
+def link_info(r):
+    """Return (is_direct, link_html) for a listing's URL"""
+    url = r.get("url", "")
+    source = r.get("source", "source")
+    if not url:
+        return False, ""
+    # Check if URL is a direct property page vs a search page
+    direct_indicators = ["/property/", "/real-estate-listing/", "/for-sale/", "/auction-event/", "/properties/", "/land/"]
+    search_indicators = ["/land-for-sale/", "/all-land", "/northwest/", "/auctionlist", "county-", "/browse"]
+    is_direct = any(ind in url for ind in direct_indicators) and not any(ind in url.split("?")[0].split("#")[0] for ind in search_indicators if ind.endswith("/"))
+    # More robust: direct URL usually has an ID or slug after /property/ etc
+    is_direct = any(ind in url for ind in ["/property/", "/real-estate-listing/?id=", "/auction-event/", "/for-sale/"])
+    if is_direct:
+        return True, f'<a href="{url}" target="_blank" style="font-size:11px;color:#3fb950;text-decoration:none;font-weight:600;">✓ Direct listing on {source} →</a>'
+    else:
+        return False, f'<a href="{url}" target="_blank" style="font-size:11px;color:#f0a030;text-decoration:none;">⚠ Search {source} (no direct link) →</a>'
+
 def render_card(r, fire=False):
     gc = r["grade"].replace("+", "-plus").lower()
     p = f"${r['price']:,.0f}" if pd.notna(r["price"]) else "Price TBD"
@@ -719,15 +829,16 @@ def render_card(r, fire=False):
         elif d > 0: au = f"{d}d away"
     w = r.get("why", "")
     wh = f'<div style="font-size:11px;color:#3fb950;margin-top:6px;padding:6px 8px;background:#3fb95008;border-left:2px solid #3fb95033;border-radius:4px;">{w}</div>' if w else ""
-    link = f'<a href="{r["url"]}" target="_blank" style="font-size:11px;color:#58a6ff;text-decoration:none;">View on {r["source"]} →</a>' if r.get("url") else ""
+    is_direct, link = link_info(r)
     tags = " ".join([f'<span class="tag">{t}</span>' for t in (r.get("tags") or [])[:5]])
     new_badge = '<span class="new-badge">NEW</span>' if r.get("is_new") else ""
+    status_html = status_badge(r.get("status"))
     fire_cls = " fire-deal" if fire else ""
     st.markdown(f"""
 <div class="deal-card{fire_cls}">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;">
         <div style="flex:1;">
-            <div style="font-size:14px;font-weight:700;">{r['title']}{new_badge}</div>
+            <div style="font-size:14px;font-weight:700;">{r['title']}{new_badge}{status_html}</div>
             <div style="font-size:12px;color:#8b949e;margin-top:2px;">{r['location']} · {r['county']} Co · {r['source']}</div>
         </div>
         <span class="grade-{gc}">{r['grade']} {r['grade_label']}</span>
