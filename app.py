@@ -540,11 +540,43 @@ def run_live_fetch():
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 live_listings, live_status, fetched_at = run_live_fetch()
 
-# Deduplicate live listings against seed by title
+# Load scraper-generated listings from data/live_listings.json (updated by GitHub Actions every 6 hours)
+import os as _os
+_scraped_file = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "data", "live_listings.json")
+scraper_listings = []
+scraper_updated = "never"
+try:
+    if _os.path.exists(_scraped_file):
+        with open(_scraped_file, "r") as _f:
+            _scraper_data = json.load(_f)
+            scraper_updated = _scraper_data.get("last_updated", "unknown")
+            for _l in _scraper_data.get("listings", []):
+                scraper_listings.append({
+                    "title": _l.get("title", "Untitled"),
+                    "location": _l.get("location", _l.get("county", "Unknown")),
+                    "county": _l.get("county", "Unknown"),
+                    "acres": _l.get("acres"),
+                    "price": _l.get("price"),
+                    "price_per_acre": _l.get("price_per_acre"),
+                    "listing_type": _l.get("listing_type", "For Sale"),
+                    "property_type": "Land",
+                    "source": _l.get("source", "Live Scrape"),
+                    "url": _l.get("url", ""),
+                    "auction_date": _l.get("auction_date"),
+                    "tags": ["auto-scraped", "fresh"],
+                    "why": "Auto-scraped fresh from source — verify availability.",
+                    "is_new": True,
+                    "status": _l.get("status", "Active"),
+                })
+except Exception as _e:
+    print(f"Error loading scraper data: {_e}")
+
+# Deduplicate against seed by title
 seed_titles = {item["title"] for item in SEED_LISTINGS}
 unique_live = [x for x in live_listings if x["title"] not in seed_titles]
+unique_scraped = [x for x in scraper_listings if x["title"] not in seed_titles and x["url"] not in {i.get("url") for i in SEED_LISTINGS}]
 
-ALL_LISTINGS = SEED_LISTINGS + unique_live
+ALL_LISTINGS = SEED_LISTINGS + unique_live + unique_scraped
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # BUILD DATAFRAME
@@ -578,6 +610,8 @@ with st.sidebar:
     st.caption(f"{len(ALL_LISTINGS)} listings · {len(df['county'].unique())} counties")
     st.caption(f"~{sum(c['listings_est'] for c in COUNTIES.values()):,} total across all sources")
     st.caption(f"Last refreshed: {fetched_at}")
+    if len(unique_scraped) > 0:
+        st.success(f"🤖 Auto-scraper added {len(unique_scraped)} fresh listings\nLast scraped: {scraper_updated[:10] if scraper_updated != 'never' else 'never'}")
 
     if unique_live:
         st.success(f"{len(unique_live)} new listings found")
