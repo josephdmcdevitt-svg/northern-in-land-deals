@@ -1,8 +1,19 @@
 {
-  "last_updated": "2026-04-24T13:27:18.255231+00:00",
-  "total_listings": 5,
+  "last_updated": "2026-04-24T18:55:48.708110+00:00",
+  "total_listings": 6,
   "sources_scraped": 6,
   "listings": [
+    {
+      "title": "REAL ESTATE AUCTION -131+/-ACRES",
+      "url": "https://www.schraderauction.com/auctions/9467",
+      "acres": null,
+      "price": null,
+      "price_per_acre": null,
+      "source": "Schrader Auction",
+      "status": "Auction",
+      "listing_type": "Auction",
+      "scraped_at": "2026-04-24T18:55:48.708110+00:00"
+    },
     {
       "title": "LAND AUCTION - 37+/- ACRES OFFERED IN 3 TRACTS",
       "url": "https://www.schraderauction.com/auctions/9452",
@@ -12,7 +23,18 @@
       "source": "Schrader Auction",
       "status": "Auction",
       "listing_type": "Auction",
-      "scraped_at": "2026-04-24T13:27:18.255231+00:00"
+      "scraped_at": "2026-04-24T18:55:48.708110+00:00"
+    },
+    {
+      "title": "REAL ESTATE AUCTION - 79+/- ACRES",
+      "url": "https://www.schraderauction.com/auctions/9454",
+      "acres": null,
+      "price": null,
+      "price_per_acre": null,
+      "source": "Schrader Auction",
+      "status": "Auction",
+      "listing_type": "Auction",
+      "scraped_at": "2026-04-24T18:55:48.708110+00:00"
     },
     {
       "title": "LAND AUCTION - 115.75+/-ACRES",
@@ -23,29 +45,7 @@
       "source": "Schrader Auction",
       "status": "Auction",
       "listing_type": "Auction",
-      "scraped_at": "2026-04-24T13:27:18.255231+00:00"
-    },
-    {
-      "title": "REAL ESTATE AUCTION -131+/-ACRES",
-      "url": "https://www.schraderauction.com/auctions/9467",
-      "acres": null,
-      "price": null,
-      "price_per_acre": null,
-      "source": "Schrader Auction",
-      "status": "Auction",
-      "listing_type": "Auction",
-      "scraped_at": "2026-04-24T13:27:18.255231+00:00"
-    },
-    {
-      "title": "REAL ESTATE AUCTION - 1.27+/-ACRE",
-      "url": "https://www.schraderauction.com/auctions/9464",
-      "acres": null,
-      "price": null,
-      "price_per_acre": null,
-      "source": "Schrader Auction",
-      "status": "Auction",
-      "listing_type": "Auction",
-      "scraped_at": "2026-04-24T13:27:18.255231+00:00"
+      "scraped_at": "2026-04-24T18:55:48.708110+00:00"
     },
     {
       "title": "REAL ESTATE AUCTION - 8.25+/-ACRES",
@@ -56,7 +56,18 @@
       "source": "Schrader Auction",
       "status": "Auction",
       "listing_type": "Auction",
-      "scraped_at": "2026-04-24T13:27:18.255231+00:00"
+      "scraped_at": "2026-04-24T18:55:48.708110+00:00"
+    },
+    {
+      "title": "LAND AUCTION - 90.5+/-ACRES",
+      "url": "https://www.schraderauction.com/auctions/9444",
+      "acres": null,
+      "price": null,
+      "price_per_acre": null,
+      "source": "Schrader Auction",
+      "status": "Auction",
+      "listing_type": "Auction",
+      "scraped_at": "2026-04-24T18:55:48.708110+00:00"
     }
   ]
 }
